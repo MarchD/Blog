@@ -1,6 +1,6 @@
 import React from 'react';
-import { Header } from '../components/Header/Header';
-import { Footer } from '../components/Footer/Footer';
+import { Header } from '../components/Header';
+import { Footer } from '../components/Footer';
 import styled from 'styled-components';
 import { Container } from '../components/Container';
 
