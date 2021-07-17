@@ -36,8 +36,8 @@ const theme = {
     colors: {
         black: '#15171a',
         white: '#fff',
-        gray: '#758d99',
-        grayLight: '#49505b',
+        grayLight: '#758d99',
+        gray: '#49505b',
         blue: '#4bb7f1',
         blueLight: '#152535',
     },

@@ -6,8 +6,8 @@ const FooterStyled = styled.footer`
     align-items: center;
     justify-content: center;
     height: 50px;
-    background-color: #758d99;
-    color: #ffffff;
+    background-color: ${({ theme }) => theme.colors.gray};
+    color: ${({ theme }) => theme.colors.white};
 `;
 
 export const Footer: React.FC = () => {
