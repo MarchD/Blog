@@ -1,6 +1,6 @@
 import React from 'react';
 import type { AppProps } from 'next/app';
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, ThemeProvider } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
   *,
@@ -19,7 +19,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: Montserrat, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-size: 1.6rem;
+    font-size: 1.8rem;
   }
 
   li {
@@ -32,12 +32,23 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
+const theme = {
+    colors: {
+        black: '#15171a',
+        white: '#fff',
+        gray: '#758d99',
+        grayLight: '#49505b',
+        blue: '#4bb7f1',
+        blueLight: '#152535',
+    },
+};
+
 function MyApp({ Component, pageProps }: AppProps) {
     return (
-        <>
+        <ThemeProvider theme={theme}>
             <GlobalStyle />
             <Component {...pageProps} />
-        </>
+        </ThemeProvider>
     );
 }
 
