@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 import Image from 'next/image';
-import { logoIco } from '../assets/icons/icons';
+import { logoIco } from '../assets/images';
 
 const LogoStyled = styled.header`
     padding: 5px;

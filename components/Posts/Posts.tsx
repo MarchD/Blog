@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { posts } from '../../db/post';
-import { Post } from './Post';
+import { PostsItem } from './PostsItem';
 
 const PostListStyled = styled.div`
     display: flex;
@@ -10,11 +10,11 @@ const PostListStyled = styled.div`
     flex-wrap: wrap;
 `;
 
-export const PostList: React.FC = () => {
+export const Posts: React.FC = () => {
     return (
         <PostListStyled>
             {posts.map((post) => (
-                <Post {...post} key={post._id} />
+                <PostsItem {...post} key={post.id} />
             ))}
         </PostListStyled>
     );
