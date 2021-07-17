@@ -6,7 +6,7 @@ const FooterStyled = styled.footer`
     align-items: center;
     justify-content: center;
     height: 50px;
-    background-color: ${({ theme }) => theme.colors.gray};
+    background-color: ${({ theme }) => theme.colors.blue};
     color: ${({ theme }) => theme.colors.white};
 `;
 

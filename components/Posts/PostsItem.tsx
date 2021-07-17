@@ -16,6 +16,13 @@ const PostsItemStyled = styled.div`
     padding: 10px 20px;
     border: 1px solid ${({ theme }) => theme.colors.grayLight};
     border-radius: 8px;
+    cursor: pointer;
+
+    &:hover {
+        h2 {
+            color: ${({ theme }) => theme.colors.blue};
+        }
+    }
 `;
 
 export const PostsItem: React.FC<IPost> = ({ title, body, id }) => {

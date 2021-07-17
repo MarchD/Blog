@@ -1,6 +1,7 @@
 import React from 'react';
 import type { AppProps } from 'next/app';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
+import { wrapper } from '../store';
 
 const GlobalStyle = createGlobalStyle`
   *,
@@ -39,7 +40,8 @@ const theme = {
         grayLight: '#758d99',
         gray: '#49505b',
         blue: '#4bb7f1',
-        blueLight: '#152535',
+        blueLight: '#e6f4ff',
+        blueDark: '#152535',
     },
 };
 
@@ -52,4 +54,4 @@ function MyApp({ Component, pageProps }: AppProps) {
     );
 }
 
-export default MyApp;
+export default wrapper.withRedux(MyApp);

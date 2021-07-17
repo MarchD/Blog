@@ -14,7 +14,7 @@ const NavItemStyled = styled.li`
         position: absolute;
         width: 0;
         height: 2px;
-        background-color: ${({ theme }) => theme.colors.gray};
+        background-color: ${({ theme }) => theme.colors.blue};
         bottom: 5px;
         left: 0;
         transition: width 0.2s linear;

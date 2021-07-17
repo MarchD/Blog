@@ -9,10 +9,7 @@ const NavStyled = styled.ul`
     column-gap: 20px;
 `;
 
-const menu: INavItem[] = [
-    { title: 'Posts', href: '/posts' },
-    { title: 'Create Post', href: '/posts/new' },
-];
+const menu: INavItem[] = [{ title: 'Create Post', href: '/posts/new' }];
 
 export const Nav: React.FC = () => {
     return (
