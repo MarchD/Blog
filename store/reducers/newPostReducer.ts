@@ -12,11 +12,13 @@ export const newPostReducer = (state = initialState, action: NewPostAction): New
             return {
                 ...state,
                 text: action.payload,
+                error: '',
             };
         case NewPostActionTypes.SET_TITLE:
             return {
                 ...state,
                 title: action.payload,
+                error: '',
             };
         case NewPostActionTypes.SET_ERROR:
             return {

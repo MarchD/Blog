@@ -19,7 +19,7 @@ const PostFlexStyled = styled.div`
 
 const Post: FC<IPost> = ({ title, comments, body }) => {
     return (
-        <MainLayout>
+        <MainLayout title={title}>
             <section>
                 <PostFlexStyled>
                     <Image src={articleImg} width={500} height={500} objectFit={'cover'} alt={posts[0].title} />

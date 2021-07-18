@@ -8,7 +8,7 @@ export const getPosts = () => {
             const response = await axios.get('https://simple-blog-api.crew.red/posts');
             dispatch({ type: PostActionTypes.GET_POSTS, payload: response.data });
         } catch (e) {
-            dispatch({ type: PostActionTypes.GET_ERROR, payload: e.response.message });
+            dispatch({ type: PostActionTypes.GET_ERROR, payload: 'Something went wrong' });
         }
     };
 };

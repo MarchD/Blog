@@ -1,7 +1,12 @@
 import React, { InputHTMLAttributes } from 'react';
 import styled from 'styled-components';
 
+interface InputState {
+    onClick(): void;
+}
+
 const InputStyled = styled.input`
+    width: 100%;
     padding: 10px 30px;
     font-size: 1.6rem;
     color: ${({ theme }) => theme.colors.gray};
@@ -17,7 +22,7 @@ const InputStyled = styled.input`
     }
 `;
 
-const Input: React.FC<InputHTMLAttributes<any>> = (props) => {
+const Input: React.FC<InputHTMLAttributes<InputState>> = (props) => {
     return <InputStyled {...props} />;
 };
 

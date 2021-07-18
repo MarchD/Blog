@@ -10,20 +10,35 @@ import { useDispatch } from 'react-redux';
 import { resetNewPost, setNewPostError, setText, setTitle } from '../../store/actions-creators/newPost';
 import axios from 'axios';
 
-const CreatePostFormStyled = styled.form`
-    display: flex;
-    flex-direction: column;
-    row-gap: 5px;
+const CreatePostStyled = styled.div`
     width: 700px;
+    margin: 0 auto;
+    text-align: center;
 `;
 
-const CreatePostWrapper = styled.div`
+const CreatePostFormStyled = styled.form`
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 5px;
+`;
+
+const CreatePostSuccess = styled.div`
     width: 100%;
     text-align: center;
 
     p {
         margin-bottom: 20px;
     }
+`;
+
+const CreatePostError = styled.p`
+    position: absolute;
+    top: -15px;
+    left: 0;
+    font-size: 12px;
+    color: ${({ theme }) => theme.colors.red};
 `;
 
 const CreatePost: FC = () => {
@@ -39,29 +54,28 @@ const CreatePost: FC = () => {
     }, []);
 
     const createNewPost = () => {
+        if (!title || !text) {
+            dispatch(setNewPostError('Fields must be filled'));
+            return;
+        }
         axios
             .post('https://simple-blog-api.crew.red/posts', { title, body: text })
             .then(() => setActive(true))
             .catch(() => dispatch(setNewPostError('Something went wrong')));
     };
 
-    if (error) {
-        return <p>{error}</p>;
-    }
-
     return (
-        <MainLayout>
+        <MainLayout title="Create a new post">
             {!active ? (
-                <>
+                <CreatePostStyled>
                     <Title>Create a new post</Title>
-
                     <CreatePostFormStyled
                         onSubmit={(event) => {
                             event.preventDefault();
                             createNewPost();
                         }}
                     >
-                        {error && <div>error</div>}
+                        {error && <CreatePostError>{error}</CreatePostError>}
                         <Input
                             placeholder={'Title'}
                             value={title}
@@ -76,12 +90,12 @@ const CreatePost: FC = () => {
                         />
                         <Button label={'Create'} type="submit" />
                     </CreatePostFormStyled>
-                </>
+                </CreatePostStyled>
             ) : (
-                <CreatePostWrapper>
+                <CreatePostSuccess>
                     <p>Post was created</p>
                     <Button onClick={() => router.push('/')} label={'Back'} />
-                </CreatePostWrapper>
+                </CreatePostSuccess>
             )}
         </MainLayout>
     );

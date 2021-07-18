@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 const Custom404: FC = () => {
     const router = useRouter();
     return (
-        <MainLayout>
+        <MainLayout title="Page not found">
             <p>404 - Page Not Found</p>
             <Button onClick={() => router.push('/')} label="Main page" />
         </MainLayout>

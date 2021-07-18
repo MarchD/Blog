@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { AppProps } from 'next/app';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { wrapper } from '../store';
+import '@fontsource/roboto-mono';
 
 const GlobalStyle = createGlobalStyle`
   *,
@@ -17,7 +18,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family: Montserrat, sans-serif;
+    font-family: "Roboto Mono", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-size: 1.8rem;
@@ -42,6 +43,7 @@ const theme = {
         blue: '#4bb7f1',
         blueLight: '#e6f4ff',
         blueDark: '#152535',
+        red: '#cb1c3e',
     },
 };
 
