@@ -11,9 +11,20 @@ import { resetNewPost, setNewPostError, setText, setTitle } from '../../store/ac
 import axios from 'axios';
 
 const CreatePostStyled = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 700px;
     margin: 0 auto;
+    padding: 20px;
     text-align: center;
+    border: 1px solid ${({ theme }) => theme.colors.black};
+    border-radius: 8px;
+    box-shadow: 8px 8px 4px rgba(0, 0, 0, 0.1);
+
+    @media (${({ theme }) => theme.media.tablet}) {
+        width: 100%;
+    }
 `;
 
 const CreatePostFormStyled = styled.form`
@@ -21,15 +32,12 @@ const CreatePostFormStyled = styled.form`
     display: flex;
     flex-direction: column;
     align-items: center;
-    row-gap: 5px;
-`;
+    row-gap: 20px;
+    width: 500px;
+    margin-top: 30px;
 
-const CreatePostSuccess = styled.div`
-    width: 100%;
-    text-align: center;
-
-    p {
-        margin-bottom: 20px;
+    @media (${({ theme }) => theme.media.tablet}) {
+        width: 100%;
     }
 `;
 
@@ -66,37 +74,43 @@ const CreatePost: FC = () => {
 
     return (
         <MainLayout title="Create a new post">
-            {!active ? (
-                <CreatePostStyled>
-                    <Title>Create a new post</Title>
-                    <CreatePostFormStyled
-                        onSubmit={(event) => {
-                            event.preventDefault();
-                            createNewPost();
-                        }}
-                    >
-                        {error && <CreatePostError>{error}</CreatePostError>}
-                        <Input
-                            placeholder={'Title'}
-                            value={title}
-                            type="text"
-                            onChange={(event: ChangeEvent<HTMLInputElement>) => dispatch(setTitle(event.target.value))}
-                        />
-                        <Input
-                            placeholder={'Text'}
-                            value={text}
-                            type="text"
-                            onChange={(event: ChangeEvent<HTMLInputElement>) => dispatch(setText(event.target.value))}
-                        />
-                        <Button label={'Create'} type="submit" />
-                    </CreatePostFormStyled>
-                </CreatePostStyled>
-            ) : (
-                <CreatePostSuccess>
-                    <p>Post was created</p>
-                    <Button onClick={() => router.push('/')} label={'Back'} />
-                </CreatePostSuccess>
-            )}
+            <CreatePostStyled>
+                {!active ? (
+                    <>
+                        <Title>Create a new post</Title>
+                        <CreatePostFormStyled
+                            onSubmit={(event) => {
+                                event.preventDefault();
+                                createNewPost();
+                            }}
+                        >
+                            {error && <CreatePostError>{error}</CreatePostError>}
+                            <Input
+                                placeholder={'Title'}
+                                value={title}
+                                type="text"
+                                onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                                    dispatch(setTitle(event.target.value))
+                                }
+                            />
+                            <Input
+                                placeholder={'Text'}
+                                value={text}
+                                type="text"
+                                onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                                    dispatch(setText(event.target.value))
+                                }
+                            />
+                            <Button label={'Create'} type="submit" />
+                        </CreatePostFormStyled>
+                    </>
+                ) : (
+                    <>
+                        <p>Post was created</p>
+                        <Button onClick={() => router.push('/')} label={'Back'} />
+                    </>
+                )}
+            </CreatePostStyled>
         </MainLayout>
     );
 };

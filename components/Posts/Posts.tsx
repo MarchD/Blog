@@ -9,9 +9,9 @@ interface PostsState {
 
 const PostListStyled = styled.div`
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fill, 375px);
+    justify-content: center;
     gap: 10px;
-    flex-wrap: wrap;
 `;
 
 const Posts: React.FC<PostsState> = ({ posts }) => {

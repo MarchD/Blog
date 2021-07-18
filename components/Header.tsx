@@ -10,6 +10,10 @@ const HeaderStyled = styled.header`
     height: 45px;
     margin: 0 50px;
     color: #49505b;
+
+    @media (${({ theme }) => theme.media.tablet}) {
+        justify-content: space-between;
+    }
 `;
 
 export const Header: React.FC = () => {

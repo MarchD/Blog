@@ -13,14 +13,28 @@ import { IPost } from '../../types/post';
 
 const PostFlexStyled = styled.div`
     display: flex;
-    column-gap: 20px;
+    gap: 20px;
     margin-bottom: 20px;
+
+    @media (${({ theme }) => theme.media.tablet}) {
+        text-align: center;
+        flex-direction: column;
+        width: 100%;
+    }
+`;
+
+const PostContent = styled.div`
+    width: 100%;
+    padding: 20px;
+    border: 1px solid ${({ theme }) => theme.colors.black};
+    border-radius: 8px;
+    box-shadow: 8px 8px 4px rgba(0, 0, 0, 0.1);
 `;
 
 const Post: FC<IPost> = ({ title, comments, body }) => {
     return (
         <MainLayout title={title}>
-            <section>
+            <PostContent>
                 <PostFlexStyled>
                     <Image src={articleImg} width={500} height={500} objectFit={'cover'} alt={posts[0].title} />
                     <div>
@@ -30,7 +44,7 @@ const Post: FC<IPost> = ({ title, comments, body }) => {
                 </PostFlexStyled>
 
                 <Comments comments={comments} />
-            </section>
+            </PostContent>
         </MainLayout>
     );
 };

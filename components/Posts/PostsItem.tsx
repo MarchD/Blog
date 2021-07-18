@@ -17,9 +17,12 @@ const PostsItemStyled = styled.div`
     padding: 10px 20px;
     border: 1px solid ${({ theme }) => theme.colors.grayLight};
     border-radius: 8px;
+    transition: box-shadow 0.1s linear;
     cursor: pointer;
 
     &:hover {
+        box-shadow: 8px 8px 4px rgba(0, 0, 0, 0.1);
+
         h2 {
             color: ${({ theme }) => theme.colors.blue};
         }

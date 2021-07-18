@@ -45,6 +45,11 @@ const theme = {
         blueDark: '#152535',
         red: '#cb1c3e',
     },
+    media: {
+        mobile: 'max-width: 425px',
+        tablet: 'max-width: 1100px',
+        notebook: 'max-width: 1280px',
+    },
 };
 
 const WrappedApp: FC<AppProps> = ({ Component, pageProps }) => (

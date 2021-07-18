@@ -10,7 +10,7 @@ interface ButtonProps {
 const ButtonStyled = styled.button`
     width: 200px;
     height: 45px;
-    margin: 0 auto;
+    margin: 10px auto;
     font-size: 2rem;
     color: ${({ theme }) => theme.colors.white};
     background-color: ${({ theme }) => theme.colors.blue};
