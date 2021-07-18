@@ -2,6 +2,7 @@ export interface NewPostState {
     title: string;
     text: string;
     error: string;
+    id?: number | null;
 }
 
 export enum NewPostActionTypes {
@@ -9,6 +10,7 @@ export enum NewPostActionTypes {
     SET_TEXT = 'SET_TEXT',
     SET_ERROR = 'SET_ERROR',
     RESET_NEW_POST = 'RESET_NEW_POST',
+    GET_NEW_POST = 'GET_NEW_POST',
 }
 
 interface SetTitleAction {
@@ -30,4 +32,9 @@ interface ResetNewPost {
     type: NewPostActionTypes.RESET_NEW_POST;
 }
 
-export type NewPostAction = SetTextAction | SetTitleAction | SetNewPostError | ResetNewPost;
+interface GetNewPost {
+    type: NewPostActionTypes.GET_NEW_POST;
+    payload: number;
+}
+
+export type NewPostAction = SetTextAction | SetTitleAction | SetNewPostError | ResetNewPost | GetNewPost;

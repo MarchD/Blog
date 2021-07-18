@@ -23,6 +23,7 @@ export interface PostState {
 export enum PostActionTypes {
     GET_POSTS = 'GET_POSTS',
     GET_ERROR = 'GET_ERROR',
+    DELETE_POST = 'DELETE_POST',
 }
 
 interface GetPostsAction {
@@ -35,4 +36,8 @@ interface GetPostsErrorAction {
     payload: string;
 }
 
-export type PostAction = GetPostsAction | GetPostsErrorAction;
+interface DeletePostAction {
+    type: PostActionTypes.DELETE_POST;
+}
+
+export type PostAction = GetPostsAction | GetPostsErrorAction | DeletePostAction;

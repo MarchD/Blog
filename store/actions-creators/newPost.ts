@@ -15,3 +15,7 @@ export const setNewPostError = (payload: string): NewPostAction => {
 export const resetNewPost = (): NewPostAction => {
     return { type: NewPostActionTypes.RESET_NEW_POST };
 };
+
+export const getNewPost = (payload: number): NewPostAction => {
+    return { type: NewPostActionTypes.GET_NEW_POST, payload };
+};

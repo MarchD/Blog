@@ -4,6 +4,7 @@ const initialState: NewPostState = {
     title: '',
     text: '',
     error: '',
+    id: null,
 };
 
 export const newPostReducer = (state = initialState, action: NewPostAction): NewPostState => {
@@ -24,6 +25,11 @@ export const newPostReducer = (state = initialState, action: NewPostAction): New
             return {
                 ...state,
                 error: action.payload,
+            };
+        case NewPostActionTypes.GET_NEW_POST:
+            return {
+                ...state,
+                id: action.payload,
             };
         case NewPostActionTypes.RESET_NEW_POST:
             return initialState;

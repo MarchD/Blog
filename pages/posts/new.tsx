@@ -7,7 +7,7 @@ import { Title } from '../../components/Title/Title';
 import { useRouter } from 'next/router';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { useDispatch } from 'react-redux';
-import { resetNewPost, setNewPostError, setText, setTitle } from '../../store/actions-creators/newPost';
+import { getNewPost, resetNewPost, setNewPostError, setText, setTitle } from '../../store/actions-creators/newPost';
 import axios from 'axios';
 
 const CreatePostStyled = styled.div`
@@ -52,7 +52,7 @@ const CreatePostError = styled.p`
 const CreatePost: FC = () => {
     const router = useRouter();
     const [active, setActive] = useState(false);
-    const { title, text, error } = useTypedSelector((state) => state.newPost);
+    const { title, text, error, id } = useTypedSelector((state) => state.newPost);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -61,13 +61,8 @@ const CreatePost: FC = () => {
         };
     }, []);
 
-    const handleTitle = (value) => {
-        dispatch(setTitle(value));
-    };
-
-    const handleText = (value) => {
-        dispatch(setText(value));
-    };
+    const handleTitle = (value) => dispatch(setTitle(value));
+    const handleText = (value) => dispatch(setText(value));
 
     const createNewPost = () => {
         if (!title || !text) {
@@ -76,7 +71,10 @@ const CreatePost: FC = () => {
         }
         axios
             .post('https://simple-blog-api.crew.red/posts', { title, body: text })
-            .then(() => setActive(true))
+            .then((res) => {
+                setActive(true);
+                dispatch(getNewPost(res.data.id));
+            })
             .catch(() => dispatch(setNewPostError('Something went wrong')));
     };
 
@@ -102,6 +100,7 @@ const CreatePost: FC = () => {
                     <>
                         <p>Post was created</p>
                         <Button onClick={() => router.push('/')} label={'Back'} />
+                        <Button onClick={() => router.push(`/posts/${id}`)} label={'Open post'} />
                     </>
                 )}
             </CreatePostStyled>
