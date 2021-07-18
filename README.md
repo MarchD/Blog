@@ -6,6 +6,7 @@
 -   Redux
 -   Typescript
 -   Styled-components
+-   Next
 
 ## Getting Started
 
