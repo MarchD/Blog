@@ -17,14 +17,16 @@ const CommentsListStyled = styled.ul`
     row-gap: 10px;
 `;
 
-export const Comments: React.FC<IComments> = (props) => {
+export const Comments: React.FC<IComments> = ({ comments = [] }) => {
     return (
         <CommentsStyled>
             <Title>Comments:</Title>
             <CommentsListStyled>
-                {props.comments.map((comment) => (
-                    <CommentsItem {...comment} key={comment.id} />
-                ))}
+                {comments.length ? (
+                    comments.map((comment) => <CommentsItem {...comment} key={comment.id} />)
+                ) : (
+                    <p>No comments yet</p>
+                )}
             </CommentsListStyled>
         </CommentsStyled>
     );

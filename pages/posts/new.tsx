@@ -1,4 +1,4 @@
-import React, { FC, ChangeEvent, useState } from 'react';
+import React, { FC, ChangeEvent, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Input from '../../components/Input';
 import { MainLayout } from '../../layouts/MainLayout';
@@ -7,7 +7,8 @@ import { Title } from '../../components/Title/Title';
 import { useRouter } from 'next/router';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { useDispatch } from 'react-redux';
-import { setText, setTitle } from '../../store/actions-creators/newPost';
+import { resetNewPost, setNewPostError, setText, setTitle } from '../../store/actions-creators/newPost';
+import axios from 'axios';
 
 const CreatePostFormStyled = styled.form`
     display: flex;
@@ -26,10 +27,27 @@ const CreatePostWrapper = styled.div`
 `;
 
 const CreatePost: FC = () => {
-    const [active, setActive] = useState(false);
     const router = useRouter();
-    const { title, text } = useTypedSelector((state) => state.newPost);
+    const [active, setActive] = useState(false);
+    const { title, text, error } = useTypedSelector((state) => state.newPost);
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        return () => {
+            dispatch(resetNewPost());
+        };
+    }, []);
+
+    const createNewPost = () => {
+        axios
+            .post('https://simple-blog-api.crew.red/posts', { title, body: text })
+            .then(() => setActive(true))
+            .catch(() => dispatch(setNewPostError('Something went wrong')));
+    };
+
+    if (error) {
+        return <p>{error}</p>;
+    }
 
     return (
         <MainLayout>
@@ -37,7 +55,13 @@ const CreatePost: FC = () => {
                 <>
                     <Title>Create a new post</Title>
 
-                    <CreatePostFormStyled>
+                    <CreatePostFormStyled
+                        onSubmit={(event) => {
+                            event.preventDefault();
+                            createNewPost();
+                        }}
+                    >
+                        {error && <div>error</div>}
                         <Input
                             placeholder={'Title'}
                             value={title}
@@ -50,13 +74,13 @@ const CreatePost: FC = () => {
                             type="text"
                             onChange={(event: ChangeEvent<HTMLInputElement>) => dispatch(setText(event.target.value))}
                         />
-                        <Button onClick={() => setActive(true)} label={'Create'} />
+                        <Button label={'Create'} type="submit" />
                     </CreatePostFormStyled>
                 </>
             ) : (
                 <CreatePostWrapper>
                     <p>Post was created</p>
-                    <Button onClick={() => router.push('/')} label={'На главную'} />
+                    <Button onClick={() => router.push('/')} label={'Back'} />
                 </CreatePostWrapper>
             )}
         </MainLayout>

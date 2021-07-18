@@ -3,12 +3,12 @@ import { PostAction, PostActionTypes } from '../../types/post';
 import axios from 'axios';
 
 export const getPosts = () => {
-    return async (dispatch: Dispatch<PostAction>) => {
+    return async (dispatch: Dispatch<PostAction>): Promise<void> => {
         try {
             const response = await axios.get('https://simple-blog-api.crew.red/posts');
             dispatch({ type: PostActionTypes.GET_POSTS, payload: response.data });
         } catch (e) {
-            dispatch({ type: PostActionTypes.GET_ERROR, payload: 'hvuyfvcuyc' });
+            dispatch({ type: PostActionTypes.GET_ERROR, payload: e.response.message });
         }
     };
 };

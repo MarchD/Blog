@@ -11,26 +11,6 @@ export const posts: IPost[] = [
                 postId: 1,
                 body: 'Odio adipisci rerum aut animi!',
             },
-            {
-                id: 1,
-                postId: 1,
-                body: 'Odio adipisci rerum aut animi!',
-            },
-            {
-                id: 1,
-                postId: 1,
-                body: 'Odio adipisci rerum aut animi!',
-            },
-            {
-                id: 1,
-                postId: 1,
-                body: 'Odio adipisci rerum aut animi!',
-            },
-            {
-                id: 1,
-                postId: 1,
-                body: 'Odio adipisci rerum aut animi!',
-            },
         ],
     },
     {

@@ -3,6 +3,7 @@ import { NewPostAction, NewPostActionTypes, NewPostState } from '../../types/new
 const initialState: NewPostState = {
     title: '',
     text: '',
+    error: '',
 };
 
 export const newPostReducer = (state = initialState, action: NewPostAction): NewPostState => {
@@ -17,6 +18,13 @@ export const newPostReducer = (state = initialState, action: NewPostAction): New
                 ...state,
                 title: action.payload,
             };
+        case NewPostActionTypes.SET_ERROR:
+            return {
+                ...state,
+                error: action.payload,
+            };
+        case NewPostActionTypes.RESET_NEW_POST:
+            return initialState;
         default:
             return state;
     }

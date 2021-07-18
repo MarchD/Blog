@@ -1,9 +1,10 @@
-import React, { MouseEventHandler } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 interface ButtonProps {
-    onClick: Function;
+    type?: string;
     label: string;
+    onClick?(): void;
 }
 
 const ButtonStyled = styled.button`
@@ -23,12 +24,8 @@ const ButtonStyled = styled.button`
     }
 `;
 
-const Button: React.FC<ButtonProps> = ({ onClick, label }) => {
-    const onClickHandler = (event: MouseEventHandler<HTMLButtonElement>) => {
-        onClick();
-    };
-
-    return <ButtonStyled onClick={onClickHandler}>{label}</ButtonStyled>;
+const Button: React.FC<ButtonProps> = ({ label, ...config }) => {
+    return <ButtonStyled {...config}>{label}</ButtonStyled>;
 };
 
 export default Button;
