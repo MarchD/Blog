@@ -1,8 +1,11 @@
-import React, { InputHTMLAttributes } from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components';
 
-interface InputState {
-    onClick(): void;
+interface InputProps {
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    placeholder?: string;
+    value: string | number;
+    type: string;
 }
 
 const InputStyled = styled.input`
@@ -22,8 +25,8 @@ const InputStyled = styled.input`
     }
 `;
 
-const Input: React.FC<InputHTMLAttributes<InputState>> = (props) => {
-    return <InputStyled {...props} />;
+const Input: FC<InputProps> = ({ onChange, ...config }) => {
+    return <InputStyled {...config} onChange={onChange} />;
 };
 
 export default Input;
