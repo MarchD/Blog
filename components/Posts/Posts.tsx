@@ -1,26 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
 import { PostsItem } from './PostsItem';
-import { useTypedSelector } from '../../hooks/useTypedSelector';
-import { NextThunkDispatch, wrapper } from '../../store';
-import { getPosts } from '../../store/actions-creators/post';
+import { IPost } from '../../types/post';
+
+interface PostsState {
+    posts: IPost[];
+}
 
 const PostListStyled = styled.div`
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 10px;
     flex-wrap: wrap;
 `;
 
-export const Posts: React.FC = () => {
-    const { posts, error } = useTypedSelector((state) => state.posts);
-
-    console.log(posts);
-
-    if (error) {
-        return <p>{error}</p>;
-    }
-
+const Posts: React.FC<PostsState> = ({ posts }) => {
     return (
         <PostListStyled>
             {posts.map((post) => (
@@ -30,7 +24,4 @@ export const Posts: React.FC = () => {
     );
 };
 
-export const getServerSideProps = wrapper.getServerSideProps(({ store }) => {
-    const dispatch = store.dispatch as NextThunkDispatch;
-    dispatch(getPosts());
-});
+export default Posts;

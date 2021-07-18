@@ -14,10 +14,10 @@ export const postsReducer = (state = initialState, action: PostAction): PostStat
             };
         case PostActionTypes.GET_POSTS:
             return {
-                ...state,
+                error: '',
                 posts: action.payload,
             };
         default:
-            return initialState;
+            return state;
     }
 };

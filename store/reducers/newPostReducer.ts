@@ -18,6 +18,6 @@ export const newPostReducer = (state = initialState, action: NewPostAction): New
                 title: action.payload,
             };
         default:
-            return initialState;
+            return state;
     }
 };

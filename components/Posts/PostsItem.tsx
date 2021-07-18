@@ -12,7 +12,8 @@ const PostsItemStyled = styled.div`
     flex-direction: column;
     align-items: center;
     row-gap: 10px;
-    max-width: 30%;
+    max-width: 500px;
+    width: 100%;
     padding: 10px 20px;
     border: 1px solid ${({ theme }) => theme.colors.grayLight};
     border-radius: 8px;

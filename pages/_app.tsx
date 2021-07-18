@@ -1,5 +1,5 @@
-import React from 'react';
-import type { AppProps } from 'next/app';
+import React, { FC } from 'react';
+import { AppProps } from 'next/app';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { wrapper } from '../store';
 
@@ -45,13 +45,11 @@ const theme = {
     },
 };
 
-function MyApp({ Component, pageProps }: AppProps) {
-    return (
-        <ThemeProvider theme={theme}>
-            <GlobalStyle />
-            <Component {...pageProps} />
-        </ThemeProvider>
-    );
-}
+const WrappedApp: FC<AppProps> = ({ Component, pageProps }) => (
+    <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <Component {...pageProps} />
+    </ThemeProvider>
+);
 
-export default wrapper.withRedux(MyApp);
+export default wrapper.withRedux(WrappedApp);
