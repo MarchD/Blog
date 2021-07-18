@@ -1,4 +1,4 @@
-import React, { FC, ChangeEvent, useState, useEffect } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Input from '../../components/Input';
 import { MainLayout } from '../../layouts/MainLayout';
@@ -61,6 +61,14 @@ const CreatePost: FC = () => {
         };
     }, []);
 
+    const handleTitle = (value) => {
+        dispatch(setTitle(value));
+    };
+
+    const handleText = (value) => {
+        dispatch(setText(value));
+    };
+
     const createNewPost = () => {
         if (!title || !text) {
             dispatch(setNewPostError('Fields must be filled'));
@@ -85,22 +93,8 @@ const CreatePost: FC = () => {
                             }}
                         >
                             {error && <CreatePostError>{error}</CreatePostError>}
-                            <Input
-                                placeholder={'Title'}
-                                value={title}
-                                type="text"
-                                onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                                    dispatch(setTitle(event.target.value))
-                                }
-                            />
-                            <Input
-                                placeholder={'Text'}
-                                value={text}
-                                type="text"
-                                onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                                    dispatch(setText(event.target.value))
-                                }
-                            />
+                            <Input placeholder={'Title'} value={title} type="text" onChange={handleTitle} />
+                            <Input placeholder={'Text'} value={text} type="text" onChange={handleText} />
                             <Button label={'Create'} type="submit" />
                         </CreatePostFormStyled>
                     </>

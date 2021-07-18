@@ -1,12 +1,15 @@
-import React, { FC } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 interface InputProps {
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    onChange: (e: string) => void;
     placeholder?: string;
     value: string | number;
     type: string;
 }
+
+type ReactInput = React.InputHTMLAttributes<HTMLInputElement>;
+type InputArgs = InputProps & Omit<ReactInput, keyof InputProps>;
 
 const InputStyled = styled.input`
     width: 100%;
@@ -25,8 +28,11 @@ const InputStyled = styled.input`
     }
 `;
 
-const Input: FC<InputProps> = ({ onChange, ...config }) => {
-    return <InputStyled {...config} onChange={onChange} />;
+const Input = ({ onChange, ...config }: InputArgs) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        onChange(e.target.value);
+    };
+    return <InputStyled {...config} onChange={handleChange} />;
 };
 
 export default Input;
